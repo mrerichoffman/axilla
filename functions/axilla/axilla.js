@@ -39,8 +39,9 @@ const HTML_TEMPLATE_PATH = path.join(ASSETS_PATH, 'basic.html')
 const getOutputPath = (format) => path.join(TMP_PATH, `output.${format}`)
 
 exports.handler = async (event) => {
-  // query params
-  const params = event.queryStringParameters
+  // query or body params
+  const params = event.body ? JSON.parse(event.body) : event.queryStringParameters
+  //const params = event.queryStringParameters
   const appletUrl = params.applet
   const appletPath = appletUrl ? INPUT_APPLET_PATH : DEFAULT_APPLET_PATH
   const format = (params.format && FORMATS[params.format.toUpperCase()]) || FORMATS.WEBP
