@@ -46,7 +46,7 @@ exports.handler = async (event) => {
   const appletPath = appletUrl ? INPUT_APPLET_PATH : DEFAULT_APPLET_PATH
   const format = (params.format && FORMATS[params.format.toUpperCase()]) || FORMATS.WEBP
   const output = (params.output && OUTPUTS[params.output.toUpperCase()]) || OUTPUTS.HTML
-  console.log('params', params) // eslint-disable-line no-console
+  console.log('appletUrl', appletUrl) // eslint-disable-line no-console
 
   // download the applet if provided
   if (!!appletUrl) {
