@@ -7,7 +7,6 @@ def main(config):
     title += "      "
     content = config.get("content", "Content not set")
     image = config.get("image", "").replace("::eq::", "=")
-    print("Displaying image: " + image)
 
     imgSrc = http.get(image).body()
 
