@@ -10,6 +10,7 @@ def main(config):
     image = config.get("image", "").replace("::eq::", "=")
     imgSrc = http.get(image).body()
 
+    iconText = config.get("iconText", "")
     icon = config.get("icon", "").replace("::eq::", "=")
     iconSrc = http.get(icon).body()
 
@@ -42,7 +43,7 @@ def main(config):
                                         render.Box(
                                             height = 6,
                                             child = render.Text(
-                                                content = "MEMORY",
+                                                content = iconText,
                                                 color = "#e91e63",
                                                 font = "tom-thumb",
                                             ),
