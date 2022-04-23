@@ -3,8 +3,8 @@ load("http.star", "http")
 
 def main(config):
     title = config.get("title", "Title not set")
+    titleLong = title + "      "
     print("Displaying message: " + title)
-    title += "      "
     content = config.get("content", "Content not set")
 
     image = config.get("image", "").replace("::eq::", "=")
@@ -68,6 +68,32 @@ def main(config):
                     # Title
                     render.Box(
                         color = "#2E0854",
+                        child = render.Row(
+                            #width = 64,
+                            #height = 20,
+                            children = [
+                                render.Column(
+                                    expanded = True,
+                                    children = [
+                                        render.Box(
+                                            height = 1,
+                                            width = 64,
+                                        ),
+                                        render.Padding(
+                                            pad = (1, 0, 0, 0),
+                                            child = render.Text(
+                                                content = title,
+                                                font = "tom-thumb",
+                                            ),
+                                        ),
+                                    ],
+                                ),
+                            ]
+                        ),
+                    ),
+                    # Long title (off screen to hack the content marquee to have a smooth scroll with pause)
+                    render.Box(
+                        color = "#2E0854",
                         child = render.Marquee(
                             width = 64,
                             #height = 20,
@@ -81,7 +107,7 @@ def main(config):
                                     render.Padding(
                                         pad = (1, 0, 0, 0),
                                         child = render.Text(
-                                            content = title,
+                                            content = titleLong,
                                             font = "tom-thumb",
                                         ),
                                     ),
