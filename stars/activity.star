@@ -6,9 +6,12 @@ def main(config):
     print("Displaying message: " + title)
     title += "      "
     content = config.get("content", "Content not set")
-    image = config.get("image", "").replace("::eq::", "=")
 
+    image = config.get("image", "").replace("::eq::", "=")
     imgSrc = http.get(image).body()
+
+    icon = config.get("icon", "").replace("::eq::", "=")
+    iconSrc = http.get(icon).body()
 
     # Render
     return render.Root(
@@ -36,11 +39,26 @@ def main(config):
                                 child = render.Column(
                                     main_align = "start",
                                     children = [
-                                      render.WrappedText(
-                                          content = content,
-                                          color = "#f0f0f0",
-                                          font = "tom-thumb",
-                                      ),
+                                        render.Box(
+                                            height = 6,
+                                            child = render.Text(
+                                                content = "MEMORY",
+                                                color = "#e91e63",
+                                                font = "tom-thumb",
+                                            ),
+                                        ),
+                                        render.Box(
+                                            height = 17,
+                                            child = render.Image(
+                                                src = iconSrc,
+                                                height = 15,
+                                            ),
+                                        ),
+                                        render.WrappedText(
+                                            content = content,
+                                            color = "#f0f0f0",
+                                            font = "tom-thumb",
+                                        ),
                                     ]
                                 ),
                             ),
@@ -73,4 +91,3 @@ def main(config):
                 ],
             ),
     )
-
