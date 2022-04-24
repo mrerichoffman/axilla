@@ -3,7 +3,6 @@ load("http.star", "http")
 
 def main(config):
     title = config.get("title", "Title not set")
-    titleLong = title + "      "
     print("Displaying message: " + title)
     content = config.get("content", "Content not set")
 
@@ -16,6 +15,7 @@ def main(config):
 
     # Render
     return render.Root(
+        delay = 100,
         child =
             render.Column(
                 expanded = True,
@@ -89,30 +89,6 @@ def main(config):
                                     ],
                                 ),
                             ]
-                        ),
-                    ),
-                    # Long title (off screen to hack the content marquee to have a smooth scroll with pause)
-                    render.Box(
-                        color = "#2E0854",
-                        child = render.Marquee(
-                            width = 64,
-                            #height = 20,
-                            child = render.Column(
-                                expanded = True,
-                                children = [
-                                    render.Box(
-                                        height = 1,
-                                        width = 64,
-                                    ),
-                                    render.Padding(
-                                        pad = (1, 0, 0, 0),
-                                        child = render.Text(
-                                            content = titleLong,
-                                            font = "tom-thumb",
-                                        ),
-                                    ),
-                                ],
-                            ),
                         ),
                     ),
                 ],
