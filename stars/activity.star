@@ -4,7 +4,7 @@ load("http.star", "http")
 def main(config):
     title = config.get("title", "Title not set")
     print("Displaying message: " + title)
-    content = config.get("content", "Content not set")
+    content = config.get("content", "Content not set").replace("::eq::", "=")
 
     image = config.get("image", "").replace("::eq::", "=")
     imgSrc = http.get(image).body()
